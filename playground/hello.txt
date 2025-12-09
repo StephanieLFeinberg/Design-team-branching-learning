@@ -1,0 +1,2 @@
+This is a safe place to practice.
+Edit this file to try your first commit!
