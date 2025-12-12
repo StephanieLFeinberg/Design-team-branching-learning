@@ -4,7 +4,7 @@
 
 1. Create a branch. Name it your name.
     Command **git branch branch-name**
-2. Add a file. Name it your favorite seasion and initials like so **fall-sf**
+2. Add a file. Name it your favorite season and initials like so: **fall-sf**
 3. Add whatever you choose to the file! your favorite seasonal activities, why you love that season, or just a string of random text.
 4. Practice switching branches. 
     Command **git checkout branch-name**
