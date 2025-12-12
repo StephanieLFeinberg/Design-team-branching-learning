@@ -20,3 +20,5 @@
    - "What does a commit do?"
    - "What happens when I push my branch?"
    - "What is the difference between local and remote?"
+
+   Have fun learning!
