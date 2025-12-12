@@ -14,3 +14,9 @@
 7. Delete your branch.
     Command **git branch -d branch name**
 
+##Tips if you get stuck##
+- **ask cursor agent!**
+   - "What is the command to create a branch?"
+   - "What does a commit do?"
+   - "What happens when I push my branch?"
+   - "What is the difference between local and remote?"
