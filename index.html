@@ -8,9 +8,28 @@
 </head>
 <body>
     <div class="container">
-        <button class="main-button">I'm a button!</button>
+        <button class="main-button" id="randomButton">I'm a button!</button>
     </div>
     <script src="data.json" type="application/json"></script>
+    <script>
+        const button = document.getElementById('randomButton');
+        const container = document.querySelector('.container');
+        
+        button.addEventListener('mouseenter', function() {
+            // Get viewport dimensions
+            const maxX = window.innerWidth - button.offsetWidth - 20;
+            const maxY = window.innerHeight - button.offsetHeight - 20;
+            
+            // Generate random positions
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            // Apply random position
+            button.style.position = 'fixed';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        });
+    </script>
 </body>
 </html>
 
