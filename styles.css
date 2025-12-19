@@ -22,8 +22,8 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background-color: #39004e;
-    border: none;
+    background-color: #a47864;
+    border: 3px solid #5dc7b7;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -41,6 +41,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+<<<<<<< HEAD
 .dropdown-container {
     margin-top: 30px;
     display: flex;
@@ -124,4 +125,3 @@ body {
 .add-custom-btn:active {
     transform: translateY(0);
 }
-
