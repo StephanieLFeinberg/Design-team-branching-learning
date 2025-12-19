@@ -24,6 +24,8 @@ body {
     color: white;
     background-color: #39004e;
     border: none;
+    background-color: #a47864;
+    border: 3px solid #5dc7b7;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
