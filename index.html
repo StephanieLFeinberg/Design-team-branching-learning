@@ -33,25 +33,10 @@
     </div>
     <script src="data.json" type="application/json"></script>
     <script>
-        // Button escape functionality
+        // Button functionality
         const button = document.getElementById('randomButton');
         const container = document.querySelector('.container');
         const victoryMessage = document.getElementById('victoryMessage');
-        
-        button.addEventListener('mouseenter', function() {
-            // Get viewport dimensions
-            const maxX = window.innerWidth - button.offsetWidth - 20;
-            const maxY = window.innerHeight - button.offsetHeight - 20;
-            
-            // Generate random positions
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
-            // Apply random position
-            button.style.position = 'fixed';
-            button.style.left = randomX + 'px';
-            button.style.top = randomY + 'px';
-        });
         
         button.addEventListener('click', function() {
             // Create confetti effect
@@ -59,11 +44,6 @@
             
             // Show victory message
             victoryMessage.classList.add('show');
-            
-            // Reset button position to center
-            button.style.position = 'relative';
-            button.style.left = 'auto';
-            button.style.top = 'auto';
             
             // Hide victory message after 3 seconds
             setTimeout(() => {
