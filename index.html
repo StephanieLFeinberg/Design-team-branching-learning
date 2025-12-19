@@ -110,6 +110,26 @@
         const customInput = document.getElementById('custom-animal-input');
         const addCustomBtn = document.getElementById('add-custom-btn');
 
+        // Animal emoji mapping
+        const animalEmojis = {
+            'dog': '🐕',
+            'cat': '🐈',
+            'bird': '🐦',
+            'fish': '🐟',
+            'rabbit': '🐰',
+            'hamster': '🐹',
+            'horse': '🐴'
+        };
+
+        function updateButtonText(animalValue) {
+            if (!animalValue || animalValue === 'other') {
+                button.textContent = "I'm a button!";
+                return; // Reset to default for empty or "other" selection
+            }
+            const emoji = animalEmojis[animalValue.toLowerCase()] || '👽';
+            button.textContent = emoji;
+        }
+
         animalSelect.addEventListener('change', function() {
             if (this.value === 'other') {
                 customContainer.style.display = 'flex';
@@ -117,6 +137,7 @@
             } else {
                 customContainer.style.display = 'none';
                 customInput.value = '';
+                updateButtonText(this.value);
             }
         });
 
@@ -132,6 +153,9 @@
                 // Insert before "Other" option
                 const otherOption = animalSelect.querySelector('option[value="other"]');
                 animalSelect.insertBefore(option, otherOption);
+                
+                // Update button text with emoji (or alien if not found)
+                updateButtonText(customAnimal.toLowerCase());
                 
                 // Hide the custom input
                 customContainer.style.display = 'none';
