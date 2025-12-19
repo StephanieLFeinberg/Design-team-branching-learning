@@ -8,9 +8,83 @@
 </head>
 <body>
     <div class="container">
-        <button class="main-button">I'm a button!</button>
+        <button class="main-button" id="randomButton">I'm a button!</button>
+        <div class="victory-message" id="victoryMessage">
+            🎉 You caught me! 🎉
+        </div>
     </div>
     <script src="data.json" type="application/json"></script>
+    <script>
+        const button = document.getElementById('randomButton');
+        const container = document.querySelector('.container');
+        const victoryMessage = document.getElementById('victoryMessage');
+        
+        button.addEventListener('mouseenter', function() {
+            // Get viewport dimensions
+            const maxX = window.innerWidth - button.offsetWidth - 20;
+            const maxY = window.innerHeight - button.offsetHeight - 20;
+            
+            // Generate random positions
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            // Apply random position
+            button.style.position = 'fixed';
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        });
+        
+        button.addEventListener('click', function() {
+            // Create confetti effect
+            createConfetti();
+            
+            // Show victory message
+            victoryMessage.classList.add('show');
+            
+            // Reset button position to center
+            button.style.position = 'relative';
+            button.style.left = 'auto';
+            button.style.top = 'auto';
+            
+            // Hide victory message after 3 seconds
+            setTimeout(() => {
+                victoryMessage.classList.remove('show');
+            }, 3000);
+        });
+        
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7', '#a29bfe'];
+            const confettiCount = 50;
+            
+            // Get button's current position
+            const rect = button.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = centerX + 'px';
+                confetti.style.top = centerY + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random horizontal velocity
+                const randomX = (Math.random() - 0.5) * 200;
+                const randomRotate = Math.random() * 720;
+                
+                // Apply animation with inline style
+                confetti.style.setProperty('--end-x', randomX + 'px');
+                confetti.style.setProperty('--end-rotate', randomRotate + 'deg');
+                
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2000);
+            }
+        }
+    </script>
 </body>
 </html>
 
