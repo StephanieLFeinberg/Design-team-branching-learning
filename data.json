@@ -1,0 +1,12 @@
+{
+  "button": {
+    "text": "This is a button!",
+    "style": "modern",
+    "color": "#000000"
+  },
+  "page": {
+    "title": "Simple Button Page",
+    "description": "A simple HTML page with a button"
+  }
+}
+
