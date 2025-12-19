@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Season: Fall</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #90EE90 60%, #90EE90 100%);
+            color: #4a4a4a;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        /* Clouds in the sky */
+        .cloud {
+            position: fixed;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        
+        .cloud:before,
+        .cloud:after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+        }
+        
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            left: 10%;
+            animation: drift 20s infinite linear;
+        }
+        
+        .cloud2 {
+            width: 80px;
+            height: 30px;
+            top: 15%;
+            right: 15%;
+            animation: drift 25s infinite linear reverse;
+        }
+        
+        .cloud3 {
+            width: 120px;
+            height: 50px;
+            top: 5%;
+            left: 50%;
+            animation: drift 30s infinite linear;
+        }
+        
+        @keyframes drift {
+            from { transform: translateX(-100px); }
+            to { transform: translateX(calc(100vw + 100px)); }
+        }
+        
+        /* Decorative elements */
+        .mushroom, .rock, .berry-branch {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .mushroom {
+            font-size: 30px;
+            bottom: 10%;
+        }
+        
+        .rock {
+            font-size: 25px;
+            bottom: 8%;
+        }
+        
+        .berry-branch {
+            font-size: 40px;
+            top: 20%;
+        }
+        
+        /* Main game container */
+        .game-container {
+            max-width: 900px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Wooden sign style */
+        .wooden-sign {
+            background: linear-gradient(135deg, #d4a574 0%, #b8864f 100%);
+            border: 8px solid #8b6f47;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.3),
+                inset 0 2px 10px rgba(255,255,255,0.2),
+                inset 0 -2px 10px rgba(0,0,0,0.2);
+            position: relative;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+        }
+        
+        /* Sign panel */
+        .sign-panel {
+            background: #8b0000;
+            border: 4px solid #5a0000;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #ffd700;
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            text-shadow: 
+                3px 3px 0px #8b0000,
+                5px 5px 10px rgba(0,0,0,0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        h2 {
+            color: #ffd700;
+            border-bottom: 3px solid #ff8c00;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        h3 {
+            color: #ff8c00;
+            margin-top: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            color: #fff;
+            font-size: 1.1em;
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: translateX(5px);
+        }
+        li:before {
+            content: "🍂";
+            position: absolute;
+            left: 0;
+            font-size: 1.3em;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+        }
+        p {
+            font-size: 1.1em;
+            margin: 20px 0;
+            color: #fff;
+        }
+        .intro {
+            font-size: 1.3em;
+            font-style: italic;
+            text-align: center;
+            color: #ffd700;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .closing {
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 140, 0, 0.2);
+            border: 3px solid #ff8c00;
+            border-radius: 10px;
+            font-style: italic;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* Custom leaf cursor */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 2 1 4 2 5l5 8 5-8c1-1 2-3 2-5 0-4-3-7-7-7z" fill="%23ff8c00" stroke="%23d2691e" stroke-width="1"/></svg>') 12 12, auto;
+        }
+        
+        /* Falling leaf animation */
+        .falling-leaf {
+            position: fixed;
+            pointer-events: none;
+            font-size: 25px;
+            z-index: 9999;
+            animation: fall linear forwards;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Game UI elements */
+        .game-ui {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 69, 19, 0.9);
+            border: 3px solid #8b4513;
+            border-radius: 10px;
+            padding: 15px;
+            color: #ffd700;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        
+        .leaf-counter {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sky decorations -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    
+    <!-- Berry branches -->
+    <div class="berry-branch" style="left: 5%;">🌿</div>
+    <div class="berry-branch" style="right: 5%; transform: scaleX(-1);">🌿</div>
+    
+    <!-- Ground decorations -->
+    <div class="mushroom" style="left: 8%;">🍄</div>
+    <div class="mushroom" style="left: 15%;">🍄</div>
+    <div class="rock" style="left: 12%;">🪨</div>
+    <div class="mushroom" style="right: 10%;">🍄</div>
+    <div class="rock" style="right: 8%;">🪨</div>
+    
+    <!-- Game UI -->
+    <div class="game-ui">
+        <div class="leaf-counter">🍂 Leaves: <span id="leafCount">0</span></div>
+    </div>
+    
+    <div class="game-container">
+        <div class="wooden-sign">
+            <div class="sign-panel">
+                <h1>My Favorite Season: Fall</h1>
+                
+                <h2>What I Love About Fall</h2>
+                
+                <p class="intro">Fall is my absolute favorite season! Here's why:</p>
+                
+                <h3>The Weather</h3>
+                <ul>
+                    <li>Perfect sweater weather - not too hot, not too cold</li>
+                    <li>Crisp, cool mornings that make you feel alive</li>
+                    <li>Beautiful sunny afternoons with a gentle breeze</li>
+                </ul>
+                
+                <h3>The Colors</h3>
+                <ul>
+                    <li>The stunning transformation of leaves from green to vibrant reds, oranges, and yellows</li>
+                    <li>The golden light that seems to make everything glow</li>
+                    <li>Cozy warm tones everywhere you look</li>
+                </ul>
+                
+                <h3>The Activities</h3>
+                <ul>
+                    <li>Apple picking at local orchards</li>
+                    <li>Pumpkin carving and decorating</li>
+                    <li>Long walks through crunchy leaves</li>
+                    <li>Cozy evenings with hot apple cider or pumpkin spice lattes</li>
+                    <li>Baking warm pies and cookies</li>
+                </ul>
+                
+                <h3>The Atmosphere</h3>
+                <ul>
+                    <li>That feeling of new beginnings (even though it's technically the end of the year)</li>
+                    <li>The anticipation of the holidays ahead</li>
+                    <li>Cozy vibes with blankets, candles, and warm drinks</li>
+                    <li>The perfect excuse to wear my favorite boots and scarves</li>
+                </ul>
+                
+                <p class="closing">Fall just has this magical quality that makes everything feel cozy, beautiful, and full of possibility!</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Create falling leaves on mouse move
+        let activeLeafCount = 0;
+        let totalLeaves = 0;
+        const maxLeaves = 50;
+        
+        // Update leaf counter
+        function updateCounter() {
+            document.getElementById('leafCount').textContent = totalLeaves;
+        }
+        
+        document.addEventListener('mousemove', function(e) {
+            // Only create a leaf occasionally (not on every mouse move)
+            if (Math.random() > 0.92 && activeLeafCount < maxLeaves) {
+                createFallingLeaf(e.clientX, e.clientY);
+            }
+        });
+        
+        // Also create leaves on click for more interactivity
+        document.addEventListener('click', function(e) {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createFallingLeaf(
+                        e.clientX + (Math.random() - 0.5) * 100,
+                        e.clientY + (Math.random() - 0.5) * 100
+                    );
+                }, i * 100);
+            }
+        });
+        
+        function createFallingLeaf(x, y) {
+            activeLeafCount++;
+            totalLeaves++;
+            updateCounter();
+            
+            const leaf = document.createElement('div');
+            leaf.className = 'falling-leaf';
+            // Random leaf emoji
+            const leaves = ['🍂', '🍁', '🍃'];
+            leaf.textContent = leaves[Math.floor(Math.random() * leaves.length)];
+            leaf.style.left = x + 'px';
+            leaf.style.top = y + 'px';
+            leaf.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 2-4 seconds
+            leaf.style.animationDelay = Math.random() * 0.5 + 's';
+            
+            document.body.appendChild(leaf);
+            
+            // Remove leaf after animation
+            setTimeout(() => {
+                leaf.remove();
+                activeLeafCount--;
+            }, 5000);
+        }
+        
+        // Initialize counter
+        updateCounter();
+    </script>
+</body>
+</html>
+
