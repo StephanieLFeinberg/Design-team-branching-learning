@@ -22,22 +22,71 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: white;
+<<<<<<< HEAD
     background-color: #000000;
     border: none;
+=======
+    background-color: #a47864;
+    border: 3px solid #5dc7b7;
+>>>>>>> main
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    position: relative;
 }
 
 .main-button:hover {
     background-color: #333333;
-    transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .main-button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.victory-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff6b6b;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.victory-message.show {
+    transform: translate(-50%, -50%) scale(1);
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 999;
+    animation: confetti-fall 2s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translate(0, 0) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 100vh) translateX(var(--end-x, 0)) rotate(var(--end-rotate, 720deg));
+        opacity: 0;
+    }
 }
 
