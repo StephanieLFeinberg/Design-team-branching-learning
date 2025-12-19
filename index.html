@@ -12,9 +12,28 @@
         <div class="victory-message" id="victoryMessage">
             🎉 You caught me! 🎉
         </div>
+        <div class="dropdown-container">
+            <label for="animal-select" class="dropdown-label">Pick your favorite!</label>
+            <select id="animal-select" class="animal-dropdown">
+                <option value="">-- Select an animal --</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="bird">Bird</option>
+                <option value="fish">Fish</option>
+                <option value="rabbit">Rabbit</option>
+                <option value="hamster">Hamster</option>
+                <option value="horse">Horse</option>
+                <option value="other">Other</option>
+            </select>
+            <div id="custom-animal-container" class="custom-animal-container" style="display: none;">
+                <input type="text" id="custom-animal-input" class="custom-animal-input" placeholder="Enter your favorite animal">
+                <button id="add-custom-btn" class="add-custom-btn">Add</button>
+            </div>
+        </div>
     </div>
     <script src="data.json" type="application/json"></script>
     <script>
+        // Button escape functionality
         const button = document.getElementById('randomButton');
         const container = document.querySelector('.container');
         const victoryMessage = document.getElementById('victoryMessage');
@@ -84,6 +103,71 @@
                 }, 2000);
             }
         }
+
+        // Dropdown functionality
+        const animalSelect = document.getElementById('animal-select');
+        const customContainer = document.getElementById('custom-animal-container');
+        const customInput = document.getElementById('custom-animal-input');
+        const addCustomBtn = document.getElementById('add-custom-btn');
+
+        // Animal emoji mapping
+        const animalEmojis = {
+            'dog': '🐕',
+            'cat': '🐈',
+            'bird': '🐦',
+            'fish': '🐟',
+            'rabbit': '🐰',
+            'hamster': '🐹',
+            'horse': '🐴'
+        };
+
+        function updateButtonText(animalValue) {
+            if (!animalValue || animalValue === 'other') {
+                button.textContent = "I'm a button!";
+                return; // Reset to default for empty or "other" selection
+            }
+            const emoji = animalEmojis[animalValue.toLowerCase()] || '👽';
+            button.textContent = emoji;
+        }
+
+        animalSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                customContainer.style.display = 'flex';
+                customInput.focus();
+            } else {
+                customContainer.style.display = 'none';
+                customInput.value = '';
+                updateButtonText(this.value);
+            }
+        });
+
+        addCustomBtn.addEventListener('click', function() {
+            const customAnimal = customInput.value.trim();
+            if (customAnimal) {
+                // Add the custom animal to the dropdown
+                const option = document.createElement('option');
+                option.value = customAnimal.toLowerCase();
+                option.textContent = customAnimal;
+                option.selected = true;
+                
+                // Insert before "Other" option
+                const otherOption = animalSelect.querySelector('option[value="other"]');
+                animalSelect.insertBefore(option, otherOption);
+                
+                // Update button text with emoji (or alien if not found)
+                updateButtonText(customAnimal.toLowerCase());
+                
+                // Hide the custom input
+                customContainer.style.display = 'none';
+                customInput.value = '';
+            }
+        });
+
+        customInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addCustomBtn.click();
+            }
+        });
     </script>
 </body>
 </html>

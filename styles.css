@@ -41,6 +41,90 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.dropdown-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.animal-dropdown {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #39004e;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    min-width: 250px;
+    transition: all 0.3s ease;
+}
+
+.animal-dropdown:hover {
+    border-color: #333333;
+    box-shadow: 0 2px 8px rgba(57, 0, 78, 0.2);
+}
+
+.animal-dropdown:focus {
+    outline: none;
+    border-color: #39004e;
+    box-shadow: 0 0 0 3px rgba(57, 0, 78, 0.1);
+}
+
+.custom-animal-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.custom-animal-input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 2px solid #39004e;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    min-width: 200px;
+    transition: all 0.3s ease;
+}
+
+.custom-animal-input:focus {
+    outline: none;
+    border-color: #333333;
+    box-shadow: 0 0 0 3px rgba(57, 0, 78, 0.1);
+}
+
+.add-custom-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #39004e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-custom-btn:hover {
+    background-color: #333333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-custom-btn:active {
+    transform: translateY(0);
+}
+
 .victory-message {
     position: fixed;
     top: 50%;
@@ -84,4 +168,3 @@ body {
         opacity: 0;
     }
 }
-
